@@ -153,33 +153,20 @@ function TimelineCard({
   const isLeft = index % 2 === 0;
 
   return (
-    <div className="relative flex items-center w-full mb-2">
-      <div className={`w-[calc(50%-28px)] ${isLeft ? "pr-6" : ""}`}>
-        {isLeft && (
+    <>
+      {/* Mobile: single column */}
+      <div className="relative flex items-start w-full mb-2 md:hidden">
+        <div className="relative z-10 flex-shrink-0 w-10 flex justify-center mt-4">
           <div
-            className={`transition-all duration-700 ease-out ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+            className={`w-8 h-8 rounded-full ${config.solid} flex items-center justify-center shadow-lg transition-all duration-500 ${
+              isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
             }`}
             style={{ transitionDelay: `${index * 120}ms` }}
           >
-            <CardContent entry={entry} config={config} CategoryIcon={CategoryIcon} align="right" />
+            <CategoryIcon className="w-3.5 h-3.5 text-white" />
           </div>
-        )}
-      </div>
-
-      <div className="relative z-10 flex-shrink-0 w-14 flex justify-center">
-        <div
-          className={`w-10 h-10 rounded-full ${config.solid} flex items-center justify-center shadow-lg transition-all duration-500 ${
-            isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
-          }`}
-          style={{ transitionDelay: `${index * 120}ms` }}
-        >
-          <CategoryIcon className="w-4 h-4 text-white" />
         </div>
-      </div>
-
-      <div className={`w-[calc(50%-28px)] ${!isLeft ? "pl-6" : ""}`}>
-        {!isLeft && (
+        <div className="flex-1 pl-3">
           <div
             className={`transition-all duration-700 ease-out ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
@@ -188,9 +175,49 @@ function TimelineCard({
           >
             <CardContent entry={entry} config={config} CategoryIcon={CategoryIcon} align="left" />
           </div>
-        )}
+        </div>
       </div>
-    </div>
+
+      {/* Desktop: alternating left/right */}
+      <div className="relative hidden md:flex items-center w-full mb-2">
+        <div className={`w-[calc(50%-28px)] ${isLeft ? "pr-6" : ""}`}>
+          {isLeft && (
+            <div
+              className={`transition-all duration-700 ease-out ${
+                isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+              }`}
+              style={{ transitionDelay: `${index * 120}ms` }}
+            >
+              <CardContent entry={entry} config={config} CategoryIcon={CategoryIcon} align="right" />
+            </div>
+          )}
+        </div>
+
+        <div className="relative z-10 flex-shrink-0 w-14 flex justify-center">
+          <div
+            className={`w-10 h-10 rounded-full ${config.solid} flex items-center justify-center shadow-lg transition-all duration-500 ${
+              isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
+            }`}
+            style={{ transitionDelay: `${index * 120}ms` }}
+          >
+            <CategoryIcon className="w-4 h-4 text-white" />
+          </div>
+        </div>
+
+        <div className={`w-[calc(50%-28px)] ${!isLeft ? "pl-6" : ""}`}>
+          {!isLeft && (
+            <div
+              className={`transition-all duration-700 ease-out ${
+                isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+              }`}
+              style={{ transitionDelay: `${index * 120}ms` }}
+            >
+              <CardContent entry={entry} config={config} CategoryIcon={CategoryIcon} align="left" />
+            </div>
+          )}
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -478,7 +505,7 @@ export default function Home() {
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 py-12">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 py-6 sm:py-12">
         {/* Settings link */}
         <div className="flex justify-end mb-4">
           <Link
@@ -500,7 +527,7 @@ export default function Home() {
             <Sparkles className="w-4 h-4" />
             AI-Powered Predictions
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-4 tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-4 tracking-tight">
             Future<span className="text-amber-500">Scope</span>
           </h1>
           <p className="text-lg text-muted max-w-2xl mx-auto">
@@ -517,7 +544,7 @@ export default function Home() {
               <label className="block text-sm font-medium text-muted mb-3">
                 What if...
               </label>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <input
                   type="text"
                   value={event}
@@ -530,7 +557,7 @@ export default function Home() {
                 <button
                   onClick={() => handleSubmit()}
                   disabled={isLoading || !event.trim()}
-                  className="px-6 py-3.5 bg-amber-500 text-white dark:text-gray-950 font-semibold rounded-xl hover:bg-amber-400 disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center gap-2"
+                  className="px-6 py-3.5 bg-amber-500 text-white dark:text-gray-950 font-semibold rounded-xl hover:bg-amber-400 disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 flex-shrink-0"
                 >
                   <Zap className="w-4 h-4" />
                   Predict
@@ -538,9 +565,9 @@ export default function Home() {
               </div>
 
               {/* Time horizon & steps */}
-              <div className="mt-4 flex items-center gap-4 flex-wrap">
-                <div className="flex items-center gap-2">
-                  <label className="text-xs text-muted flex-shrink-0">
+              <div className="mt-4 space-y-3">
+                <div>
+                  <label className="text-xs text-muted flex-shrink-0 mb-1.5 block">
                     <Clock className="w-3 h-3 inline mr-1" />
                     Horizon:
                   </label>
@@ -640,8 +667,8 @@ export default function Home() {
 
             {/* Timeline */}
             <div className="relative">
-              {/* Center line */}
-              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-amber-500/20 -translate-x-0.5" />
+              {/* Center line (left on mobile, center on desktop) */}
+              <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-amber-500/20 md:-translate-x-0.5" />
 
               {/* Timeline entries */}
               <div className="relative">
