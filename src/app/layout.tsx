@@ -15,6 +15,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "FutureScope — AI Prediction Timeline",
   description: "Explore the ripple effects of world events with AI-powered future prediction timelines",
+  icons: {
+    icon: [
+      { url: "/futurescope/favicon.ico", sizes: "32x32" },
+      { url: "/futurescope/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/futurescope/apple-touch-icon.png",
+  },
+  manifest: "/futurescope/manifest.json",
 };
 
 export default function RootLayout({
