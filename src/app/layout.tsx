@@ -23,6 +23,27 @@ export const metadata: Metadata = {
     apple: "/futurescope/apple-touch-icon.png",
   },
   manifest: "/futurescope/manifest.json",
+  openGraph: {
+    title: "FutureScope — AI Prediction Timeline",
+    description: "Explore the ripple effects of world events with AI-powered future prediction timelines",
+    url: "https://snozilla.github.io/futurescope/",
+    siteName: "FutureScope",
+    images: [
+      {
+        url: "https://snozilla.github.io/futurescope/og-image.webp",
+        width: 1200,
+        height: 630,
+        type: "image/webp",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FutureScope — AI Prediction Timeline",
+    description: "Explore the ripple effects of world events with AI-powered future prediction timelines",
+    images: ["https://snozilla.github.io/futurescope/og-image.webp"],
+  },
 };
 
 export default function RootLayout({
