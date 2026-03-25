@@ -532,7 +532,7 @@ export default function Home() {
           </h1>
           <p className="text-lg text-muted max-w-2xl mx-auto">
             Enter any hypothetical world event and explore a timeline of cascading
-            consequences up to 15 years into the future.
+            consequences up to 50 years into the future.
           </p>
         </header>
 
