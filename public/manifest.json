@@ -8,14 +8,14 @@
   "theme_color": "#f97316",
   "icons": [
     {
-      "src": "/futurescope/icon-192.png",
+      "src": "/futurescope/icon-192.webp",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/webp"
     },
     {
-      "src": "/futurescope/icon-512.png",
+      "src": "/futurescope/icon-512.webp",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/webp"
     }
   ]
 }

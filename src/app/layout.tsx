@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/futurescope/favicon.ico", sizes: "32x32" },
-      { url: "/futurescope/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/futurescope/icon-192.webp", sizes: "192x192", type: "image/webp" },
     ],
-    apple: "/futurescope/apple-touch-icon.png",
+    apple: "/futurescope/apple-touch-icon.webp",
   },
   manifest: "/futurescope/manifest.json",
   openGraph: {
